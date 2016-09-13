@@ -1,6 +1,14 @@
-var express = require('express');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    session = require('express-session'), // TODO nem production ready a store direkt, utanaolvasni: https://github.com/expressjs/session
+    morgan = require('morgan');
 
 var app = express();
+
+app.use(morgan('combined'));
+
+// csak json body-t parsolunk
+app.use(bodyParser.json());
 
 // elv csak API-knal lehet CORS tamadas, szval nem kell az osszes URL-re betenni a middleware-t TODO: utanaolvasni CORS-nak
 app.use('/', require('cors'));
